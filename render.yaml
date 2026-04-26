@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: converter-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    healthCheckPath: /
+    envVars:
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: LOG_CHANNEL
+        sync: false
+      # LOG_CHANNEL must be numeric ID like -1001234567890
+      # Bot must be ADMIN with "Post Messages" permission in that channel!
+      - key: FORCE_CHANNEL
+        sync: false
+      - key: FORCE_INVITE_LINK
+        sync: false
+      - key: PORT
+        value: "8080"
+      - key: PYTHONUNBUFFERED
+        value: "1"
